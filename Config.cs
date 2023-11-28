@@ -35,9 +35,21 @@ namespace LearnNet_IdentityServer
         public static IEnumerable<ApiResource> ApiResources => 
             new List<ApiResource>
             {
-                new ApiResource("urn:catalog", "Catalog service API")
+                new ApiResource("urn:catalog_categories", "Catalog service API: Categories")
                 {
-                    Scopes = { "products.read", "products.create", "products.update", "products.delete", "categories.read", "categories.create", "categories.update", "categories.delete" },
+                    Scopes = { "categories.read", "categories.create", "categories.update", "categories.delete" },
+
+                    RequireResourceIndicator = true,
+
+                    UserClaims =
+                    {
+                        ClaimTypes.Role
+                    }
+                },
+
+                new ApiResource("urn:catalog_products", "Catalog service API: Products")
+                {
+                    Scopes = { "products.read", "products.create", "products.update", "products.delete" },
 
                     RequireResourceIndicator = true,
 

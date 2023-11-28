@@ -16,13 +16,20 @@ namespace LearnNet_IdentityServer
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
-                new ApiScope(name: "manager.read"),
-                new ApiScope(name: "manager.create"),
-                new ApiScope(name: "manager.update"),
-                new ApiScope(name: "manager.delete"),
+                new ApiScope(name: "products.read"),
+                new ApiScope(name: "products.create"),
+                new ApiScope(name: "products.update"),
+                new ApiScope(name: "products.delete"),
 
-                new ApiScope(name: "buyer.read"),
+                new ApiScope(name: "categories.read"),
+                new ApiScope(name: "categories.create"),
+                new ApiScope(name: "categories.update"),
+                new ApiScope(name: "categories.delete"),
 
+                new ApiScope(name: "carts.read"),
+                new ApiScope(name: "carts.create"),
+                new ApiScope(name: "carts.update"),
+                new ApiScope(name: "carts.delete"),
             };
 
         public static IEnumerable<ApiResource> ApiResources => 
@@ -30,7 +37,7 @@ namespace LearnNet_IdentityServer
             {
                 new ApiResource("urn:catalog", "Catalog service API")
                 {
-                    Scopes = { "buyer.read", "manager.read", "manager.create", "manager.update", "manager.delete" },
+                    Scopes = { "products.read", "products.create", "products.update", "products.delete", "categories.read", "categories.create", "categories.update", "categories.delete" },
 
                     RequireResourceIndicator = true,
 
@@ -42,7 +49,7 @@ namespace LearnNet_IdentityServer
 
                 new ApiResource("urn:carting", "Carting Service API")
                 {
-                    Scopes = { "buyer.read", "manager.read" },
+                    Scopes = { "carts.read", "carts.create", "carts.update", "carts.delete" },
 
                     RequireResourceIndicator = true,
 
@@ -59,7 +66,7 @@ namespace LearnNet_IdentityServer
             {
                 new Client
                 {
-                    ClientId = "ApiClient_Manager",
+                    ClientId = "ApiClient_categories",
                     ClientSecrets = { new Secret("49C1A7E1-AAAA-4A89-A3D6-A37998FB86B0".Sha256()) },
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
@@ -69,7 +76,10 @@ namespace LearnNet_IdentityServer
                     PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "role", "manager.read", "manager.create", "manager.update", "manager.delete" },
+                    AllowedScopes = { "openid", "profile", "role", 
+                        "products.read", "products.create", "products.update", "products.delete",
+                        "categories.read", "categories.create", "categories.update", "categories.delete",
+                        "carts.read", "carts.create", "carts.update", "carts.delete"},
 
                     AlwaysIncludeUserClaimsInIdToken = true,
                     AlwaysSendClientClaims = true,
@@ -87,7 +97,7 @@ namespace LearnNet_IdentityServer
                     PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "role", "buyer.read" },
+                    AllowedScopes = { "openid", "profile", "role", "products.read",  "categories.read", "carts.read", "carts.create", "carts.update", "carts.delete" },
 
                     AlwaysIncludeUserClaimsInIdToken = true,
                     AlwaysSendClientClaims = true,

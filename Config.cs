@@ -78,7 +78,7 @@ namespace LearnNet_IdentityServer
             {
                 new Client
                 {
-                    ClientId = "ApiClient_categories",
+                    ClientId = "ApiClient_Manager",
                     ClientSecrets = { new Secret("49C1A7E1-AAAA-4A89-A3D6-A37998FB86B0".Sha256()) },
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,

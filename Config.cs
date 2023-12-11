@@ -30,6 +30,8 @@ namespace LearnNet_IdentityServer
                 new ApiScope(name: "carts.create"),
                 new ApiScope(name: "carts.update"),
                 new ApiScope(name: "carts.delete"),
+				
+				new ApiScope(name: "admin"),
             };
 
         public static IEnumerable<ApiResource> ApiResources => 
@@ -37,7 +39,7 @@ namespace LearnNet_IdentityServer
             {
                 new ApiResource("urn:catalog_categories", "Catalog service API: Categories")
                 {
-                    Scopes = { "categories.read", "categories.create", "categories.update", "categories.delete" },
+                    Scopes = { "categories.read", "categories.create", "categories.update", "categories.delete", "admin" },
 
                     RequireResourceIndicator = true,
 
@@ -49,7 +51,7 @@ namespace LearnNet_IdentityServer
 
                 new ApiResource("urn:catalog_products", "Catalog service API: Products")
                 {
-                    Scopes = { "products.read", "products.create", "products.update", "products.delete" },
+                    Scopes = { "products.read", "products.create", "products.update", "products.delete", "admin" },
 
                     RequireResourceIndicator = true,
 
@@ -61,7 +63,7 @@ namespace LearnNet_IdentityServer
 
                 new ApiResource("urn:carting", "Carting Service API")
                 {
-                    Scopes = { "carts.read", "carts.create", "carts.update", "carts.delete" },
+                    Scopes = { "carts.read", "carts.create", "carts.update", "carts.delete", "admin" },
 
                     RequireResourceIndicator = true,
 
@@ -88,7 +90,7 @@ namespace LearnNet_IdentityServer
                     PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "role", 
+                    AllowedScopes = { "openid", "profile", "role", "admin",
                         "products.read", "products.create", "products.update", "products.delete",
                         "categories.read", "categories.create", "categories.update", "categories.delete",
                         "carts.read", "carts.create", "carts.update", "carts.delete"},
